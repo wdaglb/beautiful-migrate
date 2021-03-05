@@ -2,6 +2,7 @@
     "name": "ke/thinkphp-beautiful-migrate",
     "type": "library",
     "description": "一个易使用、漂亮的数据库迁移代码构建器",
+    "license": "MIT",
     "authors": [
         {
             "name": "King east",
