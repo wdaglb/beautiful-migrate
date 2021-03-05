@@ -40,9 +40,8 @@ Schema::create($this->getAdapter(), '表名', function (Blueprint $blueprint) {
 | $blueprint->mediumText('description');       | 相当于 MEDIUMTEXT                                       |
 | $blueprint->point('position');               | 相当于 POINT                                            |
 | $blueprint->polygon('positions');            | 相当于 POLYGON                                          |
-| $blueprint->smallIncrements('id');           | 递增 ID (主键) ，相当于「UNSIGNED SMALL INTEGER」       |
 | $blueprint->smallInteger('votes');           | 相当于 SMALLINT                                         |
-| $blueprint->softDeletes();                   | 相当于为软删除添加一个可空的 deleted_at 字段            |
+| $blueprint->softDeletes();                   | 相当于为软删除添加一个可空的 delete_time 字段            |
 | $blueprint->string('name', 100);             | 相当于带长度的 VARCHAR                                  |
 | $blueprint->text('description');             | 相当于 TEXT                                             |
 | $blueprint->time('sunrise');                 | 相当于 TIME                                             |
