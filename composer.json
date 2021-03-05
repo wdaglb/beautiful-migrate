@@ -1,0 +1,32 @@
+{
+    "name": "ke/thinkphp-beautiful-migrate",
+    "type": "library",
+    "description": "一个易使用、漂亮的数据库迁移代码构建器",
+    "authors": [
+        {
+            "name": "King east",
+            "email": "1207877378@qq.com"
+        }
+    ],
+    "require": {
+        "topthink/think-migration": "^3.0",
+        "topthink/framework": "^6.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ke\\migrate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ke\\migrate\\tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.0",
+        "topthink/think": "^6.0.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit -c phpunit.xml"
+    }
+}
