@@ -7,7 +7,7 @@
 ### 安装
 
 ```
-composer require thinkphp-beautiful-migrate
+composer require ke/thinkphp-beautiful-migrate
 ```
 
 ### 使用
