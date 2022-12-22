@@ -13,7 +13,13 @@ composer require ke/thinkphp-beautiful-migrate
 ### 使用
 
 ```
+// 创建表
 Schema::create($this->getAdapter(), '表名', function (Blueprint $blueprint) {
+    // 迁移代码
+});
+
+// 修改表
+Schema::table($this->getAdapter(), '表名', function (Blueprint $blueprint) {
     // 迁移代码
 });
 ```

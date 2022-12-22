@@ -187,6 +187,7 @@ class Blueprint
      */
     public function remove($name)
     {
+        $this->columns[$name] = [];
         $this->removes[$name] = true;
         return $this;
     }
