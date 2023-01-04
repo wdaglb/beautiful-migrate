@@ -10,6 +10,7 @@ class Admin extends Migrator
     public function up()
     {
         Schema::create($this->getAdapter(), 'test', function (Blueprint $blueprint) {
+            $blueprint->id();
             $blueprint->string('username', 64)->comment('用户名');
             $blueprint->string('password', 255)->comment('登录密码');
             $blueprint->integer('integer', false, true);

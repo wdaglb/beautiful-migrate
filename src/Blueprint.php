@@ -28,6 +28,12 @@ class Blueprint
     protected $columns = [];
 
     /**
+     * 主键
+     * @var array
+     */
+    protected $primaryKey = [];
+
+    /**
      * 字段默认值
      * @var array
      */
@@ -91,6 +97,11 @@ class Blueprint
         return $list;
     }
 
+    public function getPrimaryKey()
+    {
+        return $this->primaryKey;
+    }
+
     /**
      * 是否要修改字段
      * @param $name
@@ -152,21 +163,32 @@ class Blueprint
     {
         if (is_null($columns)) {
             $this->index[] = [
-                'column'=>$this->actionName,
-                'name'=>$name ?: $this->actionName,
-            ] + $options;
+                    'column'=>$this->actionName,
+                    'name'=>$name ?: $this->actionName,
+                ] + $options;
         } else if (is_array($columns)) {
             $this->index[] = [
-                'columns'=>$columns,
-                'name'=>$name,
-            ] + $options;
+                    'columns'=>$columns,
+                    'name'=>$name,
+                ] + $options;
         } else {
             $this->index[] = [
-                'column'=>$columns,
-                'name'=>$name ?: $this->actionName,
-            ] + $options;
+                    'column'=>$columns,
+                    'name'=>$name ?: $this->actionName,
+                ] + $options;
         }
 
+        return $this;
+    }
+
+    /**
+     * 设置主键.
+     */
+    public function primary()
+    {
+        if (! in_array($this->actionName, $this->primaryKey)) {
+            $this->primaryKey[] = $this->actionName;
+        }
         return $this;
     }
 
@@ -211,6 +233,24 @@ class Blueprint
     public function rename($name, $newName)
     {
         $this->renames[$name] = $newName;
+        return $this;
+    }
+
+    /**
+     * id主键
+     * @return $this
+     */
+    public function id()
+    {
+        $this->columns['id'] = [
+            'type'=>MysqlAdapter::PHINX_TYPE_INTEGER,
+            'limit'=>MysqlAdapter::INT_BIG,
+            'identity'=>true,
+            'signed'=>false,
+        ];
+        $this->actionName = 'id';
+        $this->primary();
+
         return $this;
     }
 

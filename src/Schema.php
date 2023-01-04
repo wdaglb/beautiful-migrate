@@ -34,12 +34,17 @@ class Schema
      */
     public static function create(AdapterInterface $adapter, $name, callable $call, array $options = [])
     {
-        $table = new Table($name, $options, $adapter);
+        $options['id'] = false;
         $blueprint = new Blueprint();
 
         call_user_func($call, $blueprint);
 
-        foreach ($blueprint->getColumns() as $name=>$column) {
+        $options['primary_key'] = $blueprint->getPrimaryKey();
+        $columns = $blueprint->getColumns();
+
+        $table = new Table($name, $options, $adapter);
+
+        foreach ($columns as $name=>$column) {
             if ($blueprint->hasChange($name)) {
                 $type = $column['type'];
                 unset($column['type']);
